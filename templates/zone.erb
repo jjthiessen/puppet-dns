@@ -28,7 +28,7 @@ zone "<%= @zone %>" {
         };
     <%- end -%>
 <% end -%>
-<% if !@zone_forwarders.nil? and ( @zone_type == 'master' or  @zone_type == 'forward') -%>
+<% if !@zone_forwarders.nil? and ['master','slave','stub','forward'].include? @zone_type -%>
     forward <%= @forward_policy %>;
     forwarders {
     <%- @zone_forwarders.each do |ip| -%>
